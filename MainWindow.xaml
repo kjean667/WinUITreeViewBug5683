@@ -1,0 +1,21 @@
+<Window
+    x:Class="WinUITreeViewBug5683.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:WinUITreeViewBug5683"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <TreeView ItemsSource="{x:Bind ViewModel.Items, Mode=OneWay}"
+              SelectionMode="Single"
+              SelectedItem="{x:Bind ViewModel.SelectedItemViewModel, Mode=TwoWay}">
+        <TreeView.ItemTemplate>
+            <DataTemplate x:DataType="local:ItemViewModel">
+                <TreeViewItem ItemsSource="{x:Bind Children}" Content="{x:Bind Name}"
+                    IsExpanded="{x:Bind IsExpanded, Mode=TwoWay}"
+                    IsSelected="{x:Bind IsSelected, Mode=TwoWay}"/>
+            </DataTemplate>
+        </TreeView.ItemTemplate>
+    </TreeView>
+</Window>
